@@ -6,7 +6,7 @@ def read():
     metric = (11,14)
     metric = {
         "name": 'dht11',
-        "measurement":[
+        "measurements":[
             {
                 "name":"humidity",
                 "value":14
