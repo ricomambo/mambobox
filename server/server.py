@@ -30,7 +30,7 @@ def teardown_db(exception):
     if db is not None:
         db.close()
 
-
+# Routes
 @app.route("/")
 def index():
     return Response("andate", mimetype='text/plain')
@@ -41,14 +41,12 @@ def get_sensors():
     for sensor in sensors.list():
         reading = sensor.read()
         response["sensors"].append(reading)
-
     return jsonify(response)
 
 @app.route("/sensors/<name>")
 def get_sensor(name):
     sensor = eval('sensors.' + name)
     reading = sensor.read()
-
     return jsonify(reading)
 
 
