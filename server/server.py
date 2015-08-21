@@ -41,8 +41,8 @@ def get_sensors():
     sensors = ['dht11']
     response = {"sensors":[]}
     for sensor in sensors:
-        metric = eval(sensor).read()
-        response["sensors"].append(metric)
+        reading = eval(sensor).read()
+        response["sensors"].append(reading)
 
     return jsonify(response)
 
