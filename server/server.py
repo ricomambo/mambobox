@@ -1,11 +1,13 @@
 import os
 import sqlite3
 from flask import Flask, g, jsonify
+from flask.ext.cors import CORS
 
 # temperature and humidity
-from sensors import dht11
+# from sensors import dht11
 
 app = Flask(__name__)
+CORS(app)
 
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'mambobox.db'),
@@ -31,7 +33,6 @@ def teardown_db(exception):
 
 
 @app.route("/")
-@crossdomain(origin='*')
 def index():
     return "andate"
 
