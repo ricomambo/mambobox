@@ -1,8 +1,8 @@
-# import Adafruit_DHT
+import Adafruit_DHT
 
 def read():
     ''' returns tuple of temperature and humidity '''
-    humidity, temperature = 11,4 #Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 2)
+    humidity, temperature = Adafruit_DHT.read(Adafruit_DHT.DHT11, 2)
     metric = {
         "name": 'dht11',
         "measurements":[
