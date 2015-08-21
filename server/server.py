@@ -31,13 +31,14 @@ def teardown_db(exception):
 
 
 @app.route("/")
+@crossdomain(origin='*')
 def index():
     return "andate"
 
-@app.route("/sensors")
-def index():
-    temperature, humidity = dht11.read()
-    return jsonify({"dh11": [temperature, humidity]})
+# @app.route("/sensors")
+# def index():
+#     temperature, humidity = dht11.read()
+#     return jsonify({"dh11": [temperature, humidity]})
 
 
 if __name__ == "__main__":
