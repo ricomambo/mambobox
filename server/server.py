@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from flask import Flask, g, jsonify
+from flask import Flask, g, jsonify, Response
 from flask.ext.cors import CORS
 
 # temperature and humidity
@@ -34,7 +34,7 @@ def teardown_db(exception):
 
 @app.route("/")
 def index():
-    return "andate"
+    return Response("andate", mimetype='text/plain')
 
 @app.route("/sensors")
 def get_sensors():
