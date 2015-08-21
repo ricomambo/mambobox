@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from flask import Flask, g, jsonify
+from flask import Flask, g, jsonify, Response
 from flask.ext.cors import CORS
 
 # temperature and humidity
