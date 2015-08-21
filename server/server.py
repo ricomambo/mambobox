@@ -4,7 +4,7 @@ from flask import Flask, g, jsonify, Response
 from flask.ext.cors import CORS
 
 # temperature and humidity
-# from sensors import dht11
+from sensors import dht11
 
 app = Flask(__name__)
 CORS(app)
@@ -38,8 +38,13 @@ def index():
 
 @app.route("/sensors")
 def get_sensors():
-    # temperature, humidity = dht11.read()
-    return jsonify({"dh11": [14, 'otoño']})
+    sensors = ['dht11']
+    response = {"sensors":[]}
+    for sensor in sensors:
+        metric = eval(sensor).read()
+        response["sensors"].append(metric)
+
+    return jsonify(response)
 
 
 if __name__ == "__main__":
