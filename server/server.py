@@ -3,8 +3,7 @@ import sqlite3
 from flask import Flask, g, jsonify, Response
 from flask.ext.cors import CORS
 
-# temperature and humidity
-from sensors import dht11
+import sensors
 
 app = Flask(__name__)
 CORS(app)
@@ -38,13 +37,19 @@ def index():
 
 @app.route("/sensors")
 def get_sensors():
-    sensors = ['dht11']
     response = {"sensors":[]}
-    for sensor in sensors:
-        reading = eval(sensor).read()
+    for sensor in sensors.list():
+        reading = sensor.read()
         response["sensors"].append(reading)
 
     return jsonify(response)
+
+@app.route("/sensors/<name>")
+def get_sensor(name):
+    sensor = eval('sensors.' + name)
+    reading = sensor.read()
+
+    return jsonify(reading)
 
 
 if __name__ == "__main__":
