@@ -34,7 +34,7 @@ def teardown_db(exception):
 
 @app.route("/")
 def index():
-    return "andate"
+    return Response("andate", mimetype='text/plain')
 
 # @app.route("/sensors")
 # def index():
