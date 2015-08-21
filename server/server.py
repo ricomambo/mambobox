@@ -1,6 +1,9 @@
 import os
 import sqlite3
-from flask import Flask, g
+from flask import Flask, g, jsonify
+
+# temperature and humidity
+from sensors import dht11
 
 app = Flask(__name__)
 
@@ -29,7 +32,12 @@ def teardown_db(exception):
 
 @app.route("/")
 def index():
-    return "acá dice algo del estado actual de las cosas dentro de la caja"
+    return "andate"
+
+@app.route("/sensors")
+def index():
+    temperature, humidity = dht11.read()
+    return jsonify({"dh11": [temperature, humidity]})
 
 
 if __name__ == "__main__":
