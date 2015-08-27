@@ -5,15 +5,21 @@ var dht = require('../lib/dht');
 /* GET sensors listing. */
 router.get('/', function(req, res, next) {
   res.json(
-    { sensors: [
+    [
       {
         'name': 'dht',
-        'messurements': {
-          'temperature': dht.getTemperature(),
-          'humidity': dht.getHumidity()
-        }
+        'measurements': [
+          {
+            'name': 'temperature',
+            'value': dht.getTemperature()
+          },
+          {
+            'name': 'humidity',
+            'value': dht.getHumidity()
+          }
+        ]
       }
-    ]}
+    ]
   );
 });
 
@@ -21,10 +27,16 @@ router.get('/dht', function(req, res, next) {
   res.json(
     {
       'name': 'dht',
-      'messurements': {
-        'temperature': dht.getTemperature(),
-        'humidity': dht.getHumidity()
-      }
+      'measurements': [
+          {
+            'name': 'temperature',
+            'value': dht.getTemperature()
+          },
+          {
+            'name': 'humidity',
+            'value': dht.getHumidity()
+          }
+        ]
     }
   );
 });
