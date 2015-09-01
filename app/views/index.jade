@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  dl
+    dt Temperature
+    dd #{dht.temperature} &#8451;
+    dt Humidity
+    dd #{dht.humidity} %
+    dt Moisture
+    dd #{moisture.moisture}
