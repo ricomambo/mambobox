@@ -43,8 +43,8 @@ Logger.prototype.logDht = function (callback) {
 
 Logger.prototype.logMoisture = function (callback) {
   if (moisture) {
-    if (readout) {
-      moisture.getData(function (readout) {
+    moisture.getData(function (readout) {
+      if (readout) {
         var time = new Date();
         var data = {
           'moisture': [[{value: readout.moisture, time: time}]]
@@ -57,10 +57,10 @@ Logger.prototype.logMoisture = function (callback) {
             callback(JSON.stringify(data));
           }
         });
-      });
-    } else {
-      callback("Error reading Moisture sensor")
-    }
+      } else {
+        callback("Error reading Moisture sensor")
+      }
+    });    
   }
 }
 
