@@ -5,64 +5,58 @@ var influx = require('influx'),
   client = influx(config.influx);
 
 var Logger = function () {
-}
+};
 
 Logger.prototype.logAll = function () {
-  self = this;
-  self.logDht(function (result) {
-    console.log(result);
-    self.logMoisture( function (result) {
-      console.log(result);
+  for (var promise of [this.logDht(), this.logMoisture()]) {
+    promise.then(console.log).catch(console.log);
+  }
+};
+
+Logger.prototype.logDht = function () {
+  return new Promise(function (resolve, reject) {
+    if (!dht) { reject(new Error('DHT sensor not available')); }
+    dht.getData().then(function (readout) {
+      if (!readout) { reject(new Error('Error reading DHT sensor')); }
+      var time = new Date();
+      var data = {
+        'temperature': [[{value: readout.temperature, time: time}]],
+        'humidity': [[{value: readout.humidity, time: time}]]
+      };
+      client.writeSeries(data, function(error, response) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(JSON.stringify(data));
+        }
+      });
+    }).catch(function (error) {
+      reject(error);
     });
   });
-}
+};
 
-Logger.prototype.logDht = function (callback) {
-  if (dht) {
-    dht.getData(function (readout) {
-      if (readout) {
-        var time = new Date();
-        var data = {
-          'temperature': [[{value: readout.temperature, time: time}]],
-          'humidity': [[{value: readout.humidity, time: time}]]
-        };
-
-        client.writeSeries(data, function(error, response) {
-          if (error) {
-            callback(error);
-          } else {
-            callback(JSON.stringify(data));
-          }
-        });
-      } else {
-        callback("Error reading DHT sensor")
-      }
+Logger.prototype.logMoisture = function () {
+  return new Promise(function (resolve, reject) {
+    if (!moisture) { reject(new Error('Moisture sensor not available')); }
+    moisture.getData().then(function (readout) {
+      if (!readout) { reject(new Error('Error reading Moisture sensor')); }
+      var time = new Date();
+      var data = {
+        'moisture': [[{value: readout.moisture, time: time}]]
+      };
+      client.writeSeries(data, function(error, response) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(JSON.stringify(data));
+        }
+      });
+    }).catch(function (error) {
+      reject(error);
     });
-  }
-}
-
-Logger.prototype.logMoisture = function (callback) {
-  if (moisture) {
-    moisture.getData(function (readout) {
-      if (readout) {
-        var time = new Date();
-        var data = {
-          'moisture': [[{value: readout.moisture, time: time}]]
-        };
-
-        client.writeSeries(data, function(error, response) {
-          if (error) {
-            callback(error);
-          } else {
-            callback(JSON.stringify(data));
-          }
-        });
-      } else {
-        callback("Error reading Moisture sensor")
-      }
-    });    
-  }
-}
+  });
+};
 
 var logger = new Logger();
 logger.logAll();

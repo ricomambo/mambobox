@@ -9,16 +9,17 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-  dht.getData(function (dhtData) {
-    if (!dhtData) return next();
-    moisture.getData(function (moistureData) {
-      console.log(moistureData);
-      if (!moistureData) return next();
-      res.render('index', {
-        title: 'MamboBox',
-        dht: dhtData,
-        moisture: moistureData
-      });
-    })
+  var data = {
+    title: 'MamboBox'
+  };
+  Promise.all([
+    dht.getData(),
+    moisture.getData()
+  ]).then(function (result) {
+    data.dht = result[0];
+    data.moisture = result[1];
+    res.render('index', data);
+  }).catch(function (error) {
+    return next(error);
   });
 });
