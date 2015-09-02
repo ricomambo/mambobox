@@ -20,39 +20,47 @@ Logger.prototype.logAll = function () {
 Logger.prototype.logDht = function (callback) {
   if (dht) {
     dht.getData(function (readout) {
-      var time = new Date();
-      var data = {
-        'temperature': [[{value: readout.temperature, time: time}]],
-        'humidity': [[{value: readout.humidity, time: time}]]
-      };
+      if (readout) {
+        var time = new Date();
+        var data = {
+          'temperature': [[{value: readout.temperature, time: time}]],
+          'humidity': [[{value: readout.humidity, time: time}]]
+        };
 
-      client.writeSeries(data, function(error, response) {
-        if (error) {
-          callback(error);
-        } else {
-          callback(JSON.stringify(data));
-        }
-      });
+        client.writeSeries(data, function(error, response) {
+          if (error) {
+            callback(error);
+          } else {
+            callback(JSON.stringify(data));
+          }
+        });
+      } else {
+        callback("Error reading DHT sensor")
+      }
     });
   }
 }
 
 Logger.prototype.logMoisture = function (callback) {
   if (moisture) {
-    moisture.getData(function (readout) {
-      var time = new Date();
-      var data = {
-        'moisture': [[{value: readout.moisture, time: time}]]
-      };
+    if (readout) {
+      moisture.getData(function (readout) {
+        var time = new Date();
+        var data = {
+          'moisture': [[{value: readout.moisture, time: time}]]
+        };
 
-      client.writeSeries(data, function(error, response) {
-        if (error) {
-          callback(error);
-        } else {
-          callback(JSON.stringify(data));
-        }
+        client.writeSeries(data, function(error, response) {
+          if (error) {
+            callback(error);
+          } else {
+            callback(JSON.stringify(data));
+          }
+        });
       });
-    });
+    } else {
+      callback("Error reading Moisture sensor")
+    }
   }
 }
 
