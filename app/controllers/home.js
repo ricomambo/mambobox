@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
   };
   Promise.all([
     dht.getData(),
-    moisture.getData()
+    moisture.getMedian()
   ]).then(function (result) {
     data.dht = result[0];
     data.moisture = result[1];
