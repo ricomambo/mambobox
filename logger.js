@@ -39,7 +39,7 @@ Logger.prototype.logDht = function () {
 Logger.prototype.logMoisture = function () {
   return new Promise(function (resolve, reject) {
     if (!moisture) { reject(new Error('Moisture sensor not available')); }
-    moisture.getData().then(function (readout) {
+    moisture.getMedian().then(function (readout) {
       if (!readout) { reject(new Error('Error reading Moisture sensor')); }
       var time = new Date();
       var data = {
