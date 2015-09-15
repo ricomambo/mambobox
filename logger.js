@@ -2,7 +2,7 @@ var influx = require('influx'),
   dht = require('./lib/dht'),
   moisture = require('./lib/moisture'),
   config = require('./config/config'),
-  client = influx(config.influx)
+  client = influx(config.influx),
   time = new Date();
 
 var Logger = function () {
