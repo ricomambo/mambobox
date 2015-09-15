@@ -2,7 +2,8 @@ var influx = require('influx'),
   dht = require('./lib/dht'),
   moisture = require('./lib/moisture'),
   config = require('./config/config'),
-  client = influx(config.influx);
+  client = influx(config.influx)
+  time = new Date();
 
 var Logger = function () {
 };
@@ -18,7 +19,6 @@ Logger.prototype.logDht = function () {
     if (!dht) { reject(new Error('DHT sensor not available')); }
     dht.getData().then(function (readout) {
       if (!readout) { reject(new Error('Error reading DHT sensor')); }
-      var time = new Date();
       var data = {
         'temperature': [[{value: readout.temperature, time: time}]],
         'humidity': [[{value: readout.humidity, time: time}]]
@@ -41,7 +41,6 @@ Logger.prototype.logMoisture = function () {
     if (!moisture) { reject(new Error('Moisture sensor not available')); }
     moisture.getMedian().then(function (readout) {
       if (!readout) { reject(new Error('Error reading Moisture sensor')); }
-      var time = new Date();
       var data = {
         'moisture': [[{value: readout.moisture, time: time}]]
       };
