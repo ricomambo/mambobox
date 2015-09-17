@@ -3,7 +3,8 @@
 var express = require('express'),
   config = require('./config/config'),
   glob = require('glob'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  agenda = require('./app/agenda');
 
 mongoose.connect(config.db);
 var db = mongoose.connection;
@@ -22,4 +23,3 @@ require('./config/express')(app, config);
 app.listen(config.port, function () {
   console.log('Express server listening on port ' + config.port);
 });
-

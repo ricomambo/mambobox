@@ -10,6 +10,11 @@ var config = {
     },
     port: 3000,
     db: 'mongodb://localhost/mambobox-development',
+    mongo: {
+      db: {
+        address: 'localhost:27017/mambobox-development'
+      }
+    },
     influx: {
         host: 'localhost',
         database: 'mambobox'
