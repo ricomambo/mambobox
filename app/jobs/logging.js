@@ -3,6 +3,7 @@ var Logger = require('../../lib/logger'),
 
 module.exports = function(agenda) {
   agenda.define('logging', function(job, done) {
-    logger.logAll().then(done);
+    logger.logAll();
+    done();
   });
 };
