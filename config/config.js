@@ -34,7 +34,7 @@ var config = {
     app: {
       name: 'mambobox'
     },
-    port: 3000,
+    port: 3333,
     db: 'mongodb://localhost/mambobox-production',
     influx: {
         host: 'localhost',
