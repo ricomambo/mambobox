@@ -10,8 +10,14 @@ block content
     dt Moisture
     dd #{moisture.moisture}
     dt Light
-    dd #{light ? "ON" : "OFF"}
+    dd 
+      input#light(type='checkbox', checked=light)
     dt Fan
-    dd #{fan ? "ON" : "OFF"}
+    dd 
+      input(type='checkbox', checked=fan)
     dt Pump
-    dd #{pump ? "ON" : "OFF"}
+    dd 
+      input(type='checkbox', checked=pump)
+
+block scripts
+  script(src='/js/index.js')
