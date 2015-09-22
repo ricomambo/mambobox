@@ -23,5 +23,5 @@ router.route('/light')
       light.off();
     }
     light.close();
-    res.send(200);
+    res.sendStatus(200);
   });
