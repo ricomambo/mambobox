@@ -2,7 +2,10 @@ var express = require('express'),
   config = require('./config/config'),
   glob = require('glob'),
   mongoose = require('mongoose'),
-  agenda = require('./app/agenda');
+  agenda = require('./app/agenda'),
+  morgan = require('morgan');
+
+app.use(morgan('tiny'));
 
 mongoose.connect(config.db);
 var db = mongoose.connection;
