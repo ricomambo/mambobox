@@ -23,5 +23,5 @@ router.route('/light')
       light.off();
     }
     light.close();
-    res.json({ message: 'Light status changed.'});
+    res.send(200);
   });
