@@ -8,11 +8,11 @@ var config = {
     app: {
       name: 'mambobox'
     },
-    port: 3000,
+    port: 3001,
     db: 'mongodb://localhost/mambobox-development',
     influx: {
         host: 'localhost',
-        database: 'mambobox'
+        database: 'mambobox-development'
     }
   },
 

@@ -7,7 +7,7 @@ var express = require('express'),
   Light = require('../../lib/light'),
   light = new Light(),  
   Switch = require('../../lib/switch'),
-  fan = new Switch(15, true),
+  fan = new Switch(14, true),
   pump = new Switch(18);
 
 module.exports = function (app) {
@@ -27,9 +27,6 @@ router.get('/', function (req, res, next) {
     data.light = light.status();
     data.fan = fan.status();
     data.pump = pump.status();
-    light.close();
-    fan.close();
-    pump.close();
     res.render('index', data);
   }).catch(function (error) {
     return next(error);
