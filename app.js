@@ -5,8 +5,6 @@ var express = require('express'),
   agenda = require('./app/agenda'),
   morgan = require('morgan');
 
-app.use(morgan('tiny'));
-
 mongoose.connect(config.db);
 var db = mongoose.connection;
 db.on('error', function () {
@@ -18,6 +16,7 @@ models.forEach(function (model) {
   require(model);
 });
 var app = express();
+app.use(morgan('tiny'));
 
 require('./config/express')(app, config);
 
