@@ -7,7 +7,7 @@ $(function() {
       url: '/light',
       method: 'PUT',
       data: {
-        status: !status
+        status: status
       }
     })
     .fail(function() {

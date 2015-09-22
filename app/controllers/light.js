@@ -12,16 +12,14 @@ router.route('/light')
     var data = {
       status: light.status()
     };
-    light.close();
     res.json(data);
   })
 
   .put(function(req, res) {
-    if(req.body.status) {
+    if(req.body.status == 'true') {
       light.on();
     } else {
       light.off();
     }
-    light.close();
     res.sendStatus(200);
   });
