@@ -18,8 +18,19 @@ var app = express();
 
 require('./config/express')(app, config);
 
-agenda.every('1 minute', 'logging');
-
 app.listen(config.port, function () {
   console.log('Express server listening on port ' + config.port);
+});
+
+// Agenda jobs
+agenda.cancel({}, function(err, numRemoved) {
+  console.log(numRemoved + ' agenda jobs cancelled.');
+  console.log('Programming new agenda jobs...');
+  agenda.every('1 minute', 'logging');
+  agenda.jobs({}, function(err, jobs) {
+    jobs = jobs.map(function(job) {
+      return job.attrs.name;
+    });
+    console.log('Created jobs: ' + jobs.join(', '));
+  });
 });
