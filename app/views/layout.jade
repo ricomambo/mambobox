@@ -3,14 +3,35 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width')
-    title= title
+    if title
+      title= title
+    else
+      title MamboBox
     block css
+      link(rel='stylesheet', href='/css/materialize.min.css')
+      link(rel='stylesheet', href='/css/material-icons.css')
       link(rel='stylesheet', href='/css/style.css')
+
+  body.lighten-5
+    nav.blue-grey.darken-4
+      div.nav-wrapper
+        a.brand-logo(href='/') MamboBox
+        a.button-collapse.right(href='#', data-activates='mobile-menu')
+          i.material-icons menu
+        ul.right.hide-on-med-and-down
+          li
+            a(href='/light') Light
+        ul#mobile-menu.side-nav
+          li
+            a(href='/') Home
+              i.material-icons.left home
+          li
+            a(href='/light') Light
+              i.material-icons.left stars
+    block content
     block js
       script(src='/js/jquery.min.js')
+      script(src='/js/materialize.min.js')
+      script(src='/js/app.js')
       if ENV_DEVELOPMENT
         script(src='http://localhost:35729/livereload.js')
-  
-  body
-    block content
-    block scripts

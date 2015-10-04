@@ -3,7 +3,8 @@ var express = require('express'),
   glob = require('glob'),
   mongoose = require('mongoose'),
   agenda = require('./app/agenda'),
-  morgan = require('morgan');
+  morgan = require('morgan'),
+  methodOverride = require('method-override');
 
 mongoose.connect(config.db);
 var db = mongoose.connection;
@@ -15,8 +16,10 @@ var models = glob.sync(config.root + '/app/models/*.js');
 models.forEach(function (model) {
   require(model);
 });
+
 var app = express();
 app.use(morgan('tiny'));
+app.use(methodOverride('_method'));
 
 require('./config/express')(app, config);
 
@@ -25,14 +28,4 @@ app.listen(config.port, function () {
 });
 
 // Agenda jobs
-agenda.cancel({}, function(err, numRemoved) {
-  console.log(numRemoved + ' agenda jobs cancelled.');
-  console.log('Programming new agenda jobs...');
-  agenda.every('1 minute', 'logging');
-  agenda.jobs({}, function(err, jobs) {
-    jobs = jobs.map(function(job) {
-      return job.attrs.name;
-    });
-    console.log('Created jobs: ' + jobs.join(', '));
-  });
-});
+agenda.every('1 minute', 'logging');

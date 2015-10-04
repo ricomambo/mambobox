@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      h4 Light config
+      form.col.s12.m6.l4(name='light', action='/light?_method=PUT', method='post')
+        div.row
+          div.input-field.col.s12
+            input#lightOn(type='text', name='lightOn', value=jobs.lightOn.repeatInterval)
+            label(for='lightOn') Light On
+        div.row
+          div.input-field.col.s12
+            input#lightOff(type='text', name='lightOff',, value=jobs.lightOff.repeatInterval)
+            label(for='lightOff') Light Off
+        div.row
+          div.input-field.col.s12
+            label.active Current status
+            div.switch
+              label
+                | Off
+                input#status(type='checkbox', name='status', checked=status)
+                span.lever
+                | On
+        div.row
+          div.input-field.col.s12
+            button.btn.waves-effect.waves-light.right(type='submit')
+              | Save
+              i.material-icons.right send

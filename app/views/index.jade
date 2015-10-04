@@ -1,23 +1,57 @@
 extends layout
 
 block content
-  h1= title
-  dl
-    dt Temperature
-    dd #{dht.temperature} &#8451;
-    dt Humidity
-    dd #{dht.humidity} %
-    dt Moisture
-    dd #{moisture.moisture}
-    dt Light
-    dd 
-      input#light(type='checkbox', checked=light)
-    dt Fan
-    dd 
-      input(type='checkbox', checked=fan, disabled=true)
-    dt Pump
-    dd 
-      input(type='checkbox', checked=pump, disabled=true)
+  div.row
+    div.col.s12.m4
+      div.card.blue-grey
+        div.card-content.white-text
+          span.card-title Temperature
+          p Current: #{dht.temperature} &#8451;
+    div.col.s12.m4
+      div.card.blue-grey
+        div.card-content.white-text
+          span.card-title Humidity
+          p Current: #{dht.humidity} %
+    div.col.s12.m4
+      div.card.blue-grey
+        div.card-content.white-text
+          span.card-title Moisture
+          p Current: #{moisture.moisture}
+    div.col.s12.m4
+      div.card.blue-grey.darken-2
+        div.card-content.white-text
+          span.card-title Light
+          p
+            div.switch
+              label
+                | Off
+                input#light(type='checkbox', checked=light)
+                span.lever
+                | On
+        div.card-action
+          a(href='/light') More
+    div.col.s12.m4
+      div.card.blue-grey.darken-2
+        div.card-content.white-text
+          span.card-title Fan
+          p
+            div.switch
+              label
+                | Off
+                input#fan(type='checkbox', checked=fan)
+                span.lever
+                | On
+    div.col.s12.m4
+      div.card.blue-grey.darken-2
+        div.card-content.white-text
+          span.card-title Pump
+          p
+            div.switch
+              label
+                | Off
+                input#pump(type='checkbox', checked=pump)
+                span.lever
+                | On
 
-block scripts
+block append js
   script(src='/js/index.js')

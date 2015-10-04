@@ -1,6 +1,5 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+.brand-logo {
+  padding-left: 10px !important; }
 
-a {
-  color: #00B7FF; }
+.input-field .switch {
+  margin-bottom: 45px; }
