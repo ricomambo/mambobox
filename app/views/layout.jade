@@ -24,11 +24,10 @@ html(lang='en')
         ul#mobile-menu.side-nav
           li
             a(href='/') Home
-              i.material-icons.left home
           li
             a(href='/light') Light
-              i.material-icons.left stars
-    block content
+    div.container
+      block content
     block js
       script(src='/js/jquery.min.js')
       script(src='/js/materialize.min.js')

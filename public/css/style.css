@@ -3,3 +3,21 @@
 
 .input-field .switch {
   margin-bottom: 45px; }
+
+.card-content .switch {
+  text-align: center; }
+  .card-content .switch label {
+    font-size: 3rem; }
+    .card-content .switch label input[type=checkbox]:checked + .lever:after {
+      left: 45px;
+      background-color: #76ff03; }
+  .card-content .switch i {
+    font-size: 3rem; }
+  .card-content .switch .lever {
+    width: 70px;
+    height: 25px;
+    top: -10px; }
+  .card-content .switch .lever::after {
+    width: 30px;
+    height: 30px;
+    background-color: #9e9e9e; }

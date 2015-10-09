@@ -1,7 +1,7 @@
 //var Gpio = require('onoff').Gpio;
 var Gpio = process.env.NODE_ENV === 'production' ?
     require('onoff').Gpio :
-    require('./fake-gpio');
+    require('../../lib/fake-gpio');
 
 var Switch = function (pin, reverse) {
   this.reverse = reverse || false;

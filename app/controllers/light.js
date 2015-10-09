@@ -1,6 +1,5 @@
 var router = require('express').Router(),
-  agenda = require('../agenda'),
-  Light = require('../../lib/light'),
+  Light = require('../models/light'),
   light = new Light();
 
 module.exports = function (app) {
@@ -10,26 +9,27 @@ module.exports = function (app) {
 router.route('/light')
 
   .get(function (req, res) {
-    var data = {
-      status: light.getStatus(),
-      jobs: {}
-    };
-    agenda.jobs({name: /light/}, function(err, jobs) {
-      for (var job of jobs) {
-        data.jobs[job.attrs.name] = job.attrs;
-      }
-      res.render('light', data);
+    light.get().then(function (data) {
+      res.format({
+        html: function () {
+          res.render('light', data);
+        },
+        json: function () {
+          res.json(data);
+        }
+      });
     });
   })
 
   .put(function(req, res) {
-    console.log(req.body);
-    if(req.body.status) {
-      if(req.body.status == 'true') {
-        light.on();
-      } else if (req.body.status == 'false') {
-        light.off();
-      }
-    }
-    res.sendStatus(200);
+    light.save(req.body).then(function (data) {
+      res.format({
+        html: function () {
+          res.redirect('/light');
+        },
+        json: function () {
+          res.json(data);
+        }
+      });
+    });
   });

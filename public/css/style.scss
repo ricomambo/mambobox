@@ -7,3 +7,29 @@
     margin-bottom: 45px;
   }
 }
+
+.card-content {
+  .switch {
+    text-align: center;
+    label {
+      font-size: 3rem;
+      input[type=checkbox]:checked+.lever:after {
+        left: 45px;
+        background-color: #76ff03;
+      }
+    }
+    i {
+      font-size: 3rem;
+    }
+    .lever {
+      width: 70px;
+      height: 25px;
+      top: -10px;
+    }
+    .lever::after {
+      width: 30px;
+      height: 30px;
+      background-color: #9e9e9e;
+    }
+  }
+}

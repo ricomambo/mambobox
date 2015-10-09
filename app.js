@@ -28,4 +28,5 @@ app.listen(config.port, function () {
 });
 
 // Agenda jobs
+agenda.start();
 agenda.every('1 minute', 'logging');

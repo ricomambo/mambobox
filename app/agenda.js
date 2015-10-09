@@ -7,6 +7,5 @@ var jobs = glob.sync(config.root + '/app/jobs/*.js');
 jobs.forEach(function (job) {
   require(job)(agenda);
 });
-agenda.start();
 
 module.exports = agenda;

@@ -4,9 +4,9 @@ var express = require('express'),
   dht = new Dht(),
   Moisture = require('../../lib/moisture'),
   moisture = new Moisture(),
-  Light = require('../../lib/light'),
+  Light = require('../models/light'),
   light = new Light(),
-  Switch = require('../../lib/switch'),
+  Switch = require('../models/switch'),
   fan = new Switch(14, true),
   pump = new Switch(18);
 

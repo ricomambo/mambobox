@@ -2,17 +2,19 @@ $(function() {
   $('#light').click(function () {
     var light = $(this);
     light.attr("disabled", true);
-    var status = light.is(':checked');
+    var data = {};
+    if (light.is(':checked')) {
+      data.status = 'on'
+    }
     $.ajax({
       url: '/light',
       method: 'PUT',
-      data: {
-        status: status
-      }
+      dataType: 'json',
+      data: data
     })
     .fail(function() {
       alert('Error!');
-      light.attr("checked", status);
+      light.attr("checked", data.status ? true : false);
     })
     .always(function() {
       light.removeAttr("disabled");
