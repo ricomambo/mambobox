@@ -1,6 +1,6 @@
 var sensor = process.env.NODE_ENV === 'production' ?
     require('node-dht-sensor') :
-    require('./fake-dht-sensor');
+    require('../../lib/fake-dht-sensor');
 
 var Dht = function () {
   if (!sensor.initialize(11, 17)) {

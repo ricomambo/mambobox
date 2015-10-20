@@ -11,8 +11,8 @@ var config = {
     port: 3001,
     db: 'mongodb://localhost/mambobox-development',
     influx: {
-        host: 'localhost',
-        database: 'mambobox-development'
+      host: 'localhost',
+      database: 'mambobox-development'
     }
   },
 
@@ -24,8 +24,8 @@ var config = {
     port: 3000,
     db: 'mongodb://localhost/mambobox-test',
     influx: {
-        host: 'localhost',
-        database: 'mambobox'
+      host: 'localhost',
+      database: 'mambobox'
     }
   },
 
@@ -37,8 +37,8 @@ var config = {
     port: 3333,
     db: 'mongodb://localhost/mambobox-production',
     influx: {
-        host: 'localhost',
-        database: 'mambobox'
+      host: 'localhost',
+      database: 'mambobox'
     }
   }
 };

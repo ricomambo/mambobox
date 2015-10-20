@@ -1,13 +1,15 @@
 var sensor = process.env.NODE_ENV === 'production' ?
     require('node-ads1x15') :
-    require('./fake-moisture-sensor'),
+    require('../../lib/fake-moisture-sensor'),
   jStat = require('jstat').jStat,
   channel = 0,
   sps = '3300',
-  pga = '4096';
+  pga = '4096',
+  Logger = require('../../lib/logger');
 
 var Moisture = function () {
   this.adc = new sensor();
+  this.logger = new Logger();
 };
 
 Moisture.prototype.getData = function () {
