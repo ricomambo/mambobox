@@ -14,7 +14,10 @@ Dht.prototype.getData = function () {
       var data = sensor.read();
       if (data.temperature !== 0 && data.humidity !== 0) {
         cancel();
-        resolve(data);
+        resolve({
+          temperature: data.temperature,
+          humidity: data.humidity
+        });
       }
     }
 
