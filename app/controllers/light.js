@@ -1,7 +1,8 @@
 var router = require('express').Router(),
   Light = require('../models/light'),
   light = new Light(),
-  agenda = require('../agenda');
+  Planner = require('../../lib/planner'),
+  planner = new Planner();
 
 module.exports = function (app) {
   app.use('/', router);
@@ -11,19 +12,8 @@ router.route('/light')
 
   .get(function (req, res) {
     var data = light.get();
-    data.jobs = {
-      lightOn: {
-        repeatInterval: '0 12 * * *'
-      },
-      lightOff: {
-        repeatInterval: '0 0 * * *'
-      }
-    };
-    agenda.jobs({name: /light/}, function (err, jobs) {
-      for (var job of jobs) {
-        data.jobs[job.attrs.name] = job.attrs;
-      }
-
+    planner.getLightJobs().then(function (jobs) {
+      data.jobs = jobs;
       res.format({
         html: function () {
           res.render('light', data);
@@ -37,18 +27,8 @@ router.route('/light')
 
   .put(function(req, res) {
     var data = light.save(req.body);
-    if (req.body.lightOn) {
-      agenda.every(req.body.lightOn, 'lightOn');
-    }
-    if (req.body.lightOff) {
-      agenda.every(req.body.lightOff, 'lightOff');
-    }
-    data.jobs = {};
-    agenda.jobs({name: /light/}, function (err, jobs) {
-      for (var job of jobs) {
-        data.jobs[job.attrs.name] = job.attrs;
-      }
-
+    planner.setLightJobs(req.body).then(function (jobs) {
+      data.jobs = jobs;
       res.format({
         html: function () {
           res.redirect('/light');
