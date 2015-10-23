@@ -1,9 +1,9 @@
 $(function() {
   $('#light').click(function () {
     var light = $(this);
-    light.attr("disabled", true);
+    disableSwitch(light);
     var data = {};
-    if (light.is(':checked')) {
+    if (!getSwitchStatus(light)) {
       data.status = 'on'
     }
     $.ajax({
@@ -12,12 +12,37 @@ $(function() {
       dataType: 'json',
       data: data
     })
+    .success(function(result) {
+      setSwitchStatus(light, result.status);
+    })
     .fail(function() {
       alert('Error!');
-      light.attr("checked", data.status ? true : false);
+      setSwitchStatus(light, !data.status);
     })
     .always(function() {
-      light.removeAttr("disabled");
+      enableSwitch(light);
     });
   });
+
+  function getSwitchStatus(element) {
+    return $(element).hasClass('light-green-text');
+  }
+
+  function setSwitchStatus(element, status) {
+    if (status) {
+      $(element).removeClass('gret-text');
+      $(element).addClass('light-green-text');
+    } else {
+      $(element).removeClass('light-green-text');
+      $(element).addClass('grey-text');
+    }
+  }
+
+  function disableSwitch(element) {
+    $(element).text('not_interested');
+  }
+
+  function enableSwitch(element) {
+    $(element).text('power_settings_new');
+  }
 });

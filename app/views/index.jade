@@ -26,37 +26,20 @@ block content
       div.card.blue-grey.darken-1
         div.card-content
           span.card-title Light
-          p
-            div.switch
-              label
-                i.material-icons.text-lighten-2 power_settings_new
-                input#light(type='checkbox', checked=light)
-                span.lever
-                i.material-icons.light-green-text.text-accent-3 power_settings_new
+          p.center-align
+            i#light.switch.material-icons.text-accent-3(class=(light ? 'light-green-text' : 'grey-text')) power_settings_new
     div.col.s12.m6.l3
       div.card.blue-grey.darken-1
         div.card-content.white-text
           span.card-title Fan
-          p
-            div.switch
-              label
-                i.material-icons.text-lighten-2 not_interested
-                //- i.material-icons.text-lighten-2 power_settings_new
-                //- input#fan(type='checkbox', checked=fan, disabled=true)
-                //- span.lever
-                //- i.material-icons.light-green-text.text-accent-3 power_settings_new
+          p.center-align
+            i.switch.material-icons.grey-text.text-accent-3 not_interested
     div.col.s12.m6.l3
       div.card.blue-grey.darken-1
         div.card-content.white-text
           span.card-title Pump
-          p
-            div.switch
-              label
-                i.material-icons.text-lighten-2 not_interested
-                //- i.material-icons.text-lighten-2 power_settings_new
-                //- input#pump(type='checkbox', checked=pump, disabled=true)
-                //- span.lever
-                //- i.material-icons.light-green-text.text-accent-3 power_settings_new
+          p.center-align
+            i.switch.material-icons.grey-text.text-accent-3 not_interested
     
 block append js
   script(src='/js/index.js')

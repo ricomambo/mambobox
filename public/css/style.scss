@@ -9,27 +9,8 @@
 }
 
 .card-content {
-  .switch {
-    text-align: center;
-    label {
-      font-size: 3rem;
-      input[type=checkbox]:checked+.lever:after {
-        left: 45px;
-        background-color: #76ff03;
-      }
-    }
-    i {
-      font-size: 5rem;
-    }
-    .lever {
-      width: 70px;
-      height: 35px;
-      top: -25px;
-    }
-    .lever::after {
-      width: 40px;
-      height: 40px;
-      background-color: #9e9e9e;
-    }
+  i.switch {
+    font-size: 5rem;
+    cursor: pointer;
   }
 }
