@@ -76,7 +76,7 @@ Moisture.prototype.getMedian = function (samples) {
   });
 };
 
-function calculateValue(data) {
+var calculateValue = function (data) {
   return Math.round((1 - (1 / (pga/data))) * 100);
 }
 

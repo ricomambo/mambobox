@@ -19,8 +19,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   Promise.all([
     dht.getData(),
-    moisture.getData(),
-    cam.capture(__dirname + '/../../public/img/capture.jpg')
+    moisture.getData()
   ]).then(function (result) {
     res.render('index', {
       dht: result[0],

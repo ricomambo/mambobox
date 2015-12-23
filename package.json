@@ -22,6 +22,7 @@
     "node-ads1x15": "https://github.com/ricomambo/node-ads1x15",
     "node-dht-sensor": "^0.0.8",
     "onoff": "^1.0.2",
+    "pngjs": "^2.2.0",
     "serve-favicon": "^2.3.0",
     "v4l2camera": "^1.0.2"
   },
