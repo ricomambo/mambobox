@@ -25,7 +25,7 @@ Moisture.prototype.getData = function () {
         }
         if(data !== 0) {
           cancel();
-          resolve({moisture: data});
+          resolve({moisture: calculateValue(data)});
         }
       });
     }
@@ -59,7 +59,7 @@ Moisture.prototype.getMedian = function (samples) {
         }
         if(data !== 0) {
           if (samples-- > 0) {
-            values.push(data);
+            values.push(calculateValue(data));
           } else {
             clearInterval(retry);
             resolve({
@@ -75,5 +75,9 @@ Moisture.prototype.getMedian = function (samples) {
     var retry = setInterval(readData, 2100);
   });
 };
+
+function calculateValue(data) {
+  return Math.round((1 - (1 / (pga/data))) * 100);
+}
 
 module.exports = Moisture;
