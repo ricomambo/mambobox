@@ -8,7 +8,9 @@ var express = require('express'),
   light = new Light(),
   Switch = require('../models/switch'),
   fan = new Switch(14, true),
-  pump = new Switch(18);
+  pump = new Switch(18),
+  Camera = require('../models/camera'),
+  cam = new Camera();
 
 module.exports = function (app) {
   app.use('/', router);
@@ -17,7 +19,8 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   Promise.all([
     dht.getData(),
-    moisture.getData()
+    moisture.getData(),
+    cam.capture(__dirname + '/../../public/img/capture.jpg')
   ]).then(function (result) {
     res.render('index', {
       dht: result[0],
