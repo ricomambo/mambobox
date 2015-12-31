@@ -3,3 +3,4 @@ public/components
 .sass-cache
 npm-debug.log
 public/img/capture.jpg
+config/*.json
