@@ -1,7 +1,7 @@
 var express = require('express'),
   router = express.Router(),
-  Camera = require('../models/camera'),
-  cam = new Camera();
+  Camshoot = require('../models/camshoot'),
+  cam = new Camshoot();
 
 module.exports = function (app) {
   app.use('/', router);

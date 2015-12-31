@@ -8,9 +8,7 @@ var express = require('express'),
   light = new Light(),
   Switch = require('../models/switch'),
   fan = new Switch(14, true),
-  pump = new Switch(18),
-  Camera = require('../models/camera'),
-  cam = new Camera();
+  pump = new Switch(18);
 
 module.exports = function (app) {
   app.use('/', router);
