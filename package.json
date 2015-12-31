@@ -21,6 +21,7 @@
     "morgan": "^1.6.1",
     "node-ads1x15": "https://github.com/ricomambo/node-ads1x15",
     "node-dht-sensor": "^0.0.8",
+    "node-telegram-bot-api": "^0.17.0",
     "onoff": "^1.0.2",
     "pngjs": "^2.2.0",
     "serve-favicon": "^2.3.0",

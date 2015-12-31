@@ -18,6 +18,7 @@ var planner = new Planner();
   light = new Light();
 
 planner.addJob('1 minute', 'logging');
+planner.addJob('1 hour', 'alerts');
 planner.getLightPeriod().then(function (status) {
   if (status) {
     light.on();

@@ -9,10 +9,10 @@ module.exports = function(agenda) {
   agenda.define('logging', function(job, done) {
     dht.getData()
       .then(logger.logData)
-      .then(console.log, console.log);
+      .then(console.log);
     moisture.getData()
       .then(logger.logData)
-      .then(console.log, console.log);
+      .then(console.log);
     done();
   });
 };
