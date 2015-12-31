@@ -8,7 +8,7 @@ module.exports = function(agenda) {
   agenda.define('alerts', function(job, done) {
     moisture.getData().then(function (data) {
       if (data.moisture < 10) {
-        bot.sendMessage(config.telegram.channel, "Moisture: " + data.moisture).then(console.log);
+        bot.sendMessage(config.telegram.channel, "ALERT! Moisture is low: " + data.moisture + "%").then(console.log);
       }
     });
     done();
