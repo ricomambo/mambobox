@@ -3,7 +3,6 @@ var Camera = process.env.NODE_ENV === 'production' ?
     require('../../lib/fake-camera');
 
 var Camshoot = function () {
-  console.log(Camera);
   this.cam = new Camera();
 };
 
